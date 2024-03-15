@@ -9,7 +9,7 @@
         <div class="grid tall:grid-cols-5 wide:grid-cols-7 gap-1 p-2">
             @foreach (var letter in lettersUppercase)
             {
-                <button @onclick="PlayAudio"
+                <button @onclick="() => PlayAudio(letter)"
                         class="mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
                     @letter
                 </button>
@@ -24,9 +24,9 @@
   private List<string> lettersUppercase = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
   private List<string> lettersLowercase = ["a", "б", "в"];
   
-  private async void PlayAudio()
+  private async Task PlayAudio(string letter)
   {
-      var file = await FileSystem.OpenAppPackageFileAsync("wwwroot/sounds/A.m4a");
+      var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
       var audioPlayer = AudioManager.CreatePlayer(file);
 
       audioPlayer.Play();
