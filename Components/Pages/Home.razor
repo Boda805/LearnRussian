@@ -8,25 +8,25 @@
     <h2 class="tall:pt-4 text-center text-white text-xl font-serif fst-italic">@((MarkupString)_currentDescription)</h2>
     <div>
         <div class="grid tall:grid-cols-5 wide:grid-cols-7 gap-1 p-2">
-            @foreach (var letter in _lettersUppercase)
+            @foreach (var letter in _letters)
             {
-                if ("Ю" == letter)
+                if ("Ю" == letter.ToUpper())
                 {
-                    <button @onclick="() => HandleLetterClick(letter)"
+                    <button @onclick="() => HandleLetterClick(letter.ToUpper())"
                             class="tall:col-start-3 mt-4 bg-black text-white text-xl active:font-bold font-serif py-2 px-4 rounded">
                         @letter
                     </button> 
                 }
-                else if ("Я" == letter)
+                else if ("Я" == letter.ToUpper())
                 {
-                    <button @onclick="() => HandleLetterClick(letter)"
+                    <button @onclick="() => HandleLetterClick(letter.ToUpper())"
                             class="tall:col-start-5 mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
                         @letter
                     </button> 
                 }
                 else
                 {
-                    <button @onclick="() => HandleLetterClick(letter)"
+                    <button @onclick="() => HandleLetterClick(letter.ToUpper())"
                             class="alphabet mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
                         @letter
                     </button> 
@@ -35,13 +35,13 @@
         </div>
         <div class="flex justify-center pt-4">
             <div class="border-2 border-white flex justify-center" >
-               <button class="text-white px-2 font-serif">
+               <button @onclick="() => _letters = _letters.Select(a => a.ToUpper()).ToList()" class="text-white px-2 font-serif">
                    Uppercase
                </button>
                <div class="text-white font-serif">
                    |
                </div>
-               <button class="text-white px-2 font-serif">
+               <button @onclick="() => _letters = _letters.Select(a => a.ToLower()).ToList()" class="text-white px-2 font-serif">
                    Lowercase
                </button>   
             </div>
@@ -51,8 +51,7 @@
 
 @code {
 
-  private readonly List<string> _lettersUppercase = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
-  private List<string> _lettersLowercase = ["a", "б", "в"];
+  private List<string> _letters = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
 
   private string _currentDescription = "Tap letter see how it's pronounced";
   
