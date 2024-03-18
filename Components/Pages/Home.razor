@@ -3,26 +3,64 @@
 @inject IAudioManager AudioManager
 
 <div class="bg-black min-h-screen">
-    <h1 class="mt-6 text-center text-white text-3xl font-serif">Aлфави́т / Alphabet</h1>
-
+    <h1 class="tall:pt-8 text-center text-white text-3xl font-serif">Russian Alphabet</h1>
+    <h2 class="tall:pt-4 text-center text-white text-lg font-serif fst-italic">@_currentDescription</h2>
     <div>
         <div class="grid tall:grid-cols-5 wide:grid-cols-7 gap-1 p-2">
-            @foreach (var letter in lettersUppercase)
+            @foreach (var letter in _lettersUppercase)
             {
-                <button @onclick="() => PlayAudio(letter)"
-                        class="mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
-                    @letter
-                </button>
+                if ("Ю" == letter)
+                {
+                    <button @onclick="() => HandleLetterClick(letter)"
+                            class="tall:col-start-3 mt-4 bg-black text-white text-xl active:font-bold font-serif py-2 px-4 rounded">
+                        @letter
+                    </button> 
+                }
+                else if ("Я" == letter)
+                {
+                    <button @onclick="() => HandleLetterClick(letter)"
+                            class="tall:col-start-5 mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
+                        @letter
+                    </button> 
+                }
+                else
+                {
+                    <button @onclick="() => HandleLetterClick(letter)"
+                            class="alphabet mt-4 bg-black text-white text-xl hover:font-bold font-serif py-2 px-4 rounded">
+                        @letter
+                    </button> 
+                }
             }
+        </div>
+        <div class="flex justify-center pt-4">
+            <div class="border-2 border-white flex justify-center" >
+               <button class="text-white px-2">
+                   Uppercase
+               </button>
+               <div class="text-white">
+                   |
+               </div>
+               <button class="text-white px-2">
+                   Lowercase
+               </button>   
+            </div>
         </div>
     </div>
 </div>
 
-
 @code {
 
-  private List<string> lettersUppercase = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
-  private List<string> lettersLowercase = ["a", "б", "в"];
+  private readonly List<string> _lettersUppercase = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
+  private List<string> _lettersLowercase = ["a", "б", "в"];
+
+  private string _currentDescription = "Tap letter to hear it and see how pronounced";
+  
+  private readonly Dictionary<string, string> _letterDescriptions = new Dictionary<string, string>
+  {
+      { "A", "father" },
+      { "Б", "bad" },
+      { "В", "vine" }
+  };
   
   private async Task PlayAudio(string letter)
   {
@@ -30,6 +68,17 @@
       var audioPlayer = AudioManager.CreatePlayer(file);
 
       audioPlayer.Play();
+  }
+
+  private void SetDescription(string newDescription)
+  {
+      _currentDescription = _letterDescriptions.GetValueOrDefault(newDescription, "Error");
+  }
+
+  private async Task HandleLetterClick(string letter)
+  {
+      SetDescription(letter);
+      await PlayAudio(letter);
   }
 
 }
