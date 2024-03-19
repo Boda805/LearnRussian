@@ -5,9 +5,9 @@
 
 <div class="bg-black min-h-screen">
     <h1 class="tall:pt-8 text-center text-white text-3xl font-serif">Russian Alphabet</h1>
-    <h2 class="tall:pt-4 text-center text-white text-xl font-serif fst-italic">@((MarkupString)_currentDescription)</h2>
+    <h2 class="tall:pt-4 text-center text-white text-2xl font-serif fst-italic"><i>@((MarkupString)_currentDescription)</i></h2>
     <div>
-        <div class="grid tall:grid-cols-5 wide:grid-cols-7 gap-1 p-2">
+        <div class="grid tall:grid-cols-5 wide:grid-cols-9 grid-cols-5 gap-1 p-2">
             @foreach (var letter in _letters)
             {
                 if ("Ю" == letter.ToUpper())
@@ -53,43 +53,43 @@
 
   private List<string> _letters = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
 
-  private string _currentDescription = "Tap letter see how it's pronounced";
+  private string _currentDescription = "Tap a letter";
   
   private readonly Dictionary<string, string> _letterDescriptions = new Dictionary<string, string>
   {
-      { "A", "f**a**ther" },
-      { "Б", "**b**ad" },
-      { "В", "**v**ine" },
-      { "Г", "**g**o" },
-      { "Д", "**v**ine" },
-      { "Е", "**v**ine" },
-      { "Ё", "**v**ine" },
-      { "Ж", "**v**ine" },
-      { "З", "**v**ine" },
-      { "И", "**v**ine" },
-      { "Й", "**v**ine" },
-      { "К", "**v**ine" },
-      { "Л", "**v**ine" },
-      { "М", "**v**ine" },
-      { "Н", "**v**ine" },
-      { "О", "**v**ine" },
-      { "П", "**v**ine" },
-      { "Р", "**v**ine" },
-      { "С", "**v**ine" },
-      { "Т", "**v**ine" },
-      { "У", "**v**ine" },
-      { "Ф", "**v**ine" },
-      { "Х", "**v**ine" },
-      { "Ц", "**v**ine" },
-      { "Ч", "**v**ine" },
-      { "Ш", "**v**ine" },
-      { "Щ", "**v**ine" },
-      { "Ъ", "**v**ine" },
-      { "Ы", "**v**ine" },
-      { "Ь", "**v**ine" },
-      { "Э", "**v**ine" },
-      { "Ю", "**v**ine" },
-      { "Я", "**v**ine" },
+      { "A", "f<u>**a**</u>ther" },
+      { "Б", "<u>**b**</u>ad" },
+      { "В", "<u>**v**</u>ine" },
+      { "Г", "<u>**g**</u>o" },
+      { "Д", "<u>**d**</u>o" },
+      { "Е", "<u>**ye**</u>s" },
+      { "Ё", "<u>**yo**</u>ur" },
+      { "Ж", "mea<u>**s**</u>ure" },
+      { "З", "**<u>z**</u>oo" },
+      { "И", "pol<u>**i**</u>ce" },
+      { "Й", "to<u>**y**</u>" },
+      { "К", "<u>**k**</u>ept" },
+      { "Л", "<u>**l**</u>amp" },
+      { "М", "<u>**m**</u>ap" },
+      { "Н", "<u>**n**</u>ot" },
+      { "О", "m<u>**o**</u>re" },
+      { "П", "<u>**p**</u>et" },
+      { "Р", "rolled <u>**r**</u>" },
+      { "С", "<u>**s**</u>et" },
+      { "Т", "<u>**t**</u>op" },
+      { "У", "t<u>**oo**</u>l" },
+      { "Ф", "<u>**f**</u>ace" },
+      { "Х", "u<u>**gh**</u>" },
+      { "Ц", "si<u>**ts**</u>" },
+      { "Ч", "<u>**ch**</u>eck" },
+      { "Ш", "<u>**sh**</u>rimp" },
+      { "Щ", "pu<u>**sh</u> <u>sh**</u>ips" },
+      { "Ъ", "O'Brien" },
+      { "Ы", "ros<u>**e**</u>s (approximate)" },
+      { "Ь", "O'Brien" },
+      { "Э", "m<u>**e**</u>t" },
+      { "Ю", "<u>**u**</u>se" },
+      { "Я", "<u>**ya**</u>rd" },
   };
   
   private async Task PlayAudio(string letter)
