@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AVFoundation;
+using Microsoft.Extensions.Logging;
 using Plugin.Maui.Audio;
 
 namespace LearnRussian;
@@ -14,7 +15,11 @@ public static class MauiProgram
 
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddScoped<MarkdownService>();
-
+        
+#if IOS
+        AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.Playback);
+#endif
+        
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
