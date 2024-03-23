@@ -3,6 +3,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      colors: {
+        'leather': '#964B00',
+        'warm-beige': '#F5F5DC',
+      },
       screens: {
         'tall': {
           'raw': `only screen and (max-height: 960px) and (max-width: 480px)`
