@@ -55,7 +55,7 @@
 
   private string _currentDescription = "Tap a letter";
   
-  private readonly Dictionary<string, string> _letterDescriptions = new Dictionary<string, string>
+  private readonly Dictionary<string, string> _letterDescriptions = new ()
   {
       { "A", "f<u>**a**</u>ther" },
       { "Б", "<u>**b**</u>ad" },
@@ -91,13 +91,24 @@
       { "Ю", "<u>**u**</u>se" },
       { "Я", "<u>**ya**</u>rd" },
   };
+
+  private readonly Dictionary<string, IAudioPlayer> _audioPlayerCache = new (); 
   
   private async Task PlayAudio(string letter)
   {
-      var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
-      var audioPlayer = AudioManager.CreatePlayer(file);
+      if (_audioPlayerCache.TryGetValue(letter, out var value))
+      {
+          value.Play();
+      }
+      else
+      {
+          var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
+          var audioPlayer = AudioManager.CreatePlayer(file);
 
-      audioPlayer.Play();
+          audioPlayer.Play(); 
+          
+          _audioPlayerCache.Add(letter, audioPlayer);
+      }
   }
 
   private void SetDescription(string newDescription)
