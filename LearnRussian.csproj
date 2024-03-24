@@ -22,10 +22,10 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>QuickCyrillic</ApplicationTitle>
+        <ApplicationTitle>PocketAlpha</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.learnrussian</ApplicationId>
+        <ApplicationId>com.stoicode.learnrussian</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -64,10 +64,6 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Plugin.Maui.Audio" Version="2.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="wwwroot\A.m4a" />
     </ItemGroup>
 
 </Project>
