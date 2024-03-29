@@ -568,8 +568,26 @@ video {
   display: grid;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-full {
+  min-height: 100%;
+}
+
+.min-h-max {
+  min-height: -moz-max-content;
+  min-height: max-content;
+}
+
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 
 .grid-cols-5 {
@@ -582,6 +600,18 @@ video {
 
 .gap-1 {
   gap: 0.25rem;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overscroll-none {
+  overscroll-behavior: none;
 }
 
 .border-2 {
