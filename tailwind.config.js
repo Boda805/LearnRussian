@@ -8,6 +8,7 @@ module.exports = {
         'warm-beige': '#F5F5DC',
       },
       screens: {
+        'se': {'max': '375px'},
         'tall': {
           'raw': `only screen and (max-height: 960px) and (max-width: 480px)`
         },
