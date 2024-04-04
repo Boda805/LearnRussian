@@ -1,10 +1,56 @@
 ﻿@page "/flashcard"
+@using Plugin.Maui.Audio
+@inject IAudioManager AudioManager
 
 <div class="bg-black min-h-screen">
     <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-6xl font-serif">Alphabet Flashcards</h1>
     
+    <div class="flex justify-center pt-8 md:pt-20">
+        <div class="border-2 border-white">
+             <button class="text-white text-center text-9xl font-serif p-6" @onclick="() => PlayAudio(_currentLetter)">
+                 @_currentLetter @_currentLetter.ToLower()
+             </button>   
+        </div>
+    </div>
+
+    <div class="flex justify-center absolute inset-x-0 bottom-10 md:bottom-20">
+        <button class="text-white" @onclick="() => PlayAudio(_currentLetter)">Play</button>
+        <button class="text-white" @onclick="() => NextLetter()">Next</button>
+    </div>
 </div>
 
 @code {
+    private readonly List<string> _letters = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
+    private readonly Random _random = new();
+    private string _currentLetter = "";
     
+    private readonly Dictionary<string, IAudioPlayer> _audioPlayerCache = new ();
+
+    protected override void OnInitialized()
+    {
+        _currentLetter = _letters[_random.Next(33)];
+    }
+
+    private string NextLetter()
+    {
+        _currentLetter = _letters[_random.Next(33)];
+        return _currentLetter;
+    }
+    
+    private async Task PlayAudio(string letter)
+    {
+        if (_audioPlayerCache.TryGetValue(letter, out var value))
+        {
+            value.Play();
+        }
+        else
+        {
+            var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
+            var audioPlayer = AudioManager.CreatePlayer(file);
+
+            audioPlayer.Play(); 
+          
+            _audioPlayerCache.Add(letter, audioPlayer);
+        }
+    }
 }
