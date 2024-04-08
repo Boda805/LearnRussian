@@ -1,6 +1,9 @@
-﻿using AVFoundation;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Plugin.Maui.Audio;
+
+#if IOS
+using AVFoundation;
+#endif
 
 namespace LearnRussian;
 

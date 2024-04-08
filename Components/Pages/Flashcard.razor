@@ -20,6 +20,7 @@
 </div>
 
 @code {
+    
     private readonly List<string> _letters = ["A", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];
     private readonly Random _random = new();
     private string _currentLetter = "";
@@ -53,4 +54,5 @@
             _audioPlayerCache.Add(letter, audioPlayer);
         }
     }
+    
 }
