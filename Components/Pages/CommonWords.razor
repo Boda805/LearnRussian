@@ -1,0 +1,44 @@
+﻿@page "/commonwords"
+@using Plugin.Maui.Audio
+@inject IAudioManager AudioManager
+
+<div class="bg-black min-h-screen">
+    <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-6xl font-serif">Common Words</h1>
+    
+    <div class="flex justify-center pt-4">
+        <div class="">
+            @foreach (var word in _commonWords)
+            {
+                <button class="text-white text-2xl md:text-[256px] font-serif p-6" @onclick="() => PlayAudio(word)">
+                    @word
+                </button>
+            }
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+    private List<string> _commonWords = ["приветa", "здравствуйте"];
+    
+    private readonly Dictionary<string, IAudioPlayer> _audioPlayerCache = new ();
+
+    private async Task PlayAudio(string letter)
+    {
+        if (_audioPlayerCache.TryGetValue(letter, out var value))
+        {
+            value.Play();
+        }
+        else
+        {
+            var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
+            var audioPlayer = AudioManager.CreatePlayer(file);
+
+            audioPlayer.Play(); 
+          
+            _audioPlayerCache.Add(letter, audioPlayer);
+        }
+    }
+    
+}
