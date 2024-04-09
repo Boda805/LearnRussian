@@ -5,25 +5,65 @@
 <div class="bg-black min-h-screen">
     <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-6xl font-serif">Common Words</h1>
     
-    <div class="flex justify-center pt-4">
-        <div class="">
-            @foreach (var word in _commonWords)
-            {
-                <button class="text-white text-2xl md:text-[256px] font-serif p-6" @onclick="() => PlayAudio(word)">
-                    @word
-                </button>
-            }
-        </div>
+    <div class="flex flex-col items-start pt-4 md:pt-6 ml-8 md:ml-36">
+        @foreach (var word in _commonWords)
+        {
+            <button class="text-white text-2xl md:text-5xl md:text-4xl p-3 se:p-2 md:p-3 font-serif" @onclick="() => PlayAudio(word.Value)">
+                @word.Key - <u>@word.Value</u>
+            </button>
+        }
+    </div>
+    
+    <div>
+        <button class="text-white" @onclick="() => _commonWords = _greetings">
+            H
+        </button>
+        <button class="text-white" @onclick="() => _commonWords = _numbers">
+            1
+        </button>
     </div>
 
 </div>
 
 @code {
 
-    private List<string> _commonWords = ["приветa", "здравствуйте"];
+    private readonly Dictionary<string, string> _greetings = new()
+    {
+        { "приветa", "hello (informal)" },
+        { "здравствуйте", "hello (formal)" },
+        { "excuse me", "инзвините"},
+        { "please", "пожалуйста" },
+        { "thank you", "спасибо" },
+        { "доброе утро", "good morning" },
+        { "добрый день", "good afternoon" },
+        { "добрый вечер", "good evening" },
+        { "до свидания", "goodbye" },
+        { "спокойной ночи", "goodnight" }
+    };
+
+    private readonly Dictionary<string, string> _numbers = new()
+    {
+        { "1", "hello (formal)" },
+        { "2", "please" },
+        { "3", "thank you" },
+        { "4", "good morning" },
+        { "5", "good afternoon" },
+        { "6", "good evening" },
+        { "7", "goodbye" },
+        { "8", "goodnight" },
+        { "9", "goodnight" },
+        { "10", "goodnight" }
+    };
+
+    private Dictionary<string, string> _commonWords = new();
     
     private readonly Dictionary<string, IAudioPlayer> _audioPlayerCache = new ();
 
+    protected override void OnInitialized()
+    {
+        _commonWords = _greetings;
+    }
+    
     private async Task PlayAudio(string letter)
     {
         if (_audioPlayerCache.TryGetValue(letter, out var value))
