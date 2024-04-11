@@ -28,9 +28,9 @@
 
     private readonly Dictionary<string, string> _greetings = new()
     {
-        { "hello (informal)", "приветa" },
+        { "hello (informal)", "привет" },
         { "hello (formal)", "здравствуйте" },
-        { "excuse me", "инзвините"},
+        { "excuse me", "извините"},
         { "please", "пожалуйста" },
         { "thank you", "спасибо" },
         { "good morning", "доброе утро" },
@@ -63,20 +63,20 @@
         _commonWords = _greetings;
     }
     
-    private async Task PlayAudio(string letter)
+    private async Task PlayAudio(string word)
     {
-        if (_audioPlayerCache.TryGetValue(letter, out var value))
+        if (_audioPlayerCache.TryGetValue(word, out var value))
         {
             value.Play();
         }
         else
         {
-            var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/{letter}.m4a");
+            var file = await FileSystem.OpenAppPackageFileAsync($"wwwroot/sounds/words/{word}.m4a");
             var audioPlayer = AudioManager.CreatePlayer(file);
 
             audioPlayer.Play(); 
           
-            _audioPlayerCache.Add(letter, audioPlayer);
+            _audioPlayerCache.Add(word, audioPlayer);
         }
     }
     
