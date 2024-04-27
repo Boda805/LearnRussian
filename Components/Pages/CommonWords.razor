@@ -5,7 +5,7 @@
 <div class="bg-black min-h-screen">
     <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-6xl font-serif">Common Words</h1>
     
-    <div class="flex flex-col items-start pt-4 md:pt-6 @(_commonWords.Equals(_greetings) ? "ml-8 md:ml-36" : "ml-36 md:ml-84")">
+    <div class="flex flex-col items-start pt-4 md:pt-6 ml-8 md:ml-36">
         @foreach (var word in _commonWords)
         {
             <button class="text-white text-xl md:text-6xl landscape:text-4xl p-3 se:p-2 md:p-4 font-serif" @onclick="() => PlayAudio(word.Value)">
