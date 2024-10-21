@@ -28,7 +28,7 @@
         <ApplicationId>com.stoicode.learnrussian</ApplicationId>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.2.0</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>1.2.1</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
@@ -61,7 +61,7 @@
         <PackageReference Include="Markdig" Version="0.36.2" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.80" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Plugin.Maui.Audio" Version="2.1.0" />
     </ItemGroup>
