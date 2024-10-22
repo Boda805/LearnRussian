@@ -4,7 +4,7 @@
 @inject MarkdownService MarkdownService
 
 <div class="bg-black min-h-screen">
-    <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-6xl font-serif">Russian Alphabet</h1>
+    <h1 class="pt-8 md:pt-10 text-center text-white text-3xl md:text-5xl font-serif">Russian Alphabet</h1>
     <h2 class="pt-6 md:pt-8 text-center text-white text-2xl md:text-5xl font-serif fst-italic"><i>@((MarkupString)_currentDescription)</i></h2>
     <div>
         <div class="grid grid-cols-5 landscape:grid-cols-9 gap-1 p-2">
@@ -13,27 +13,27 @@
                 if ("Ю" == letter.ToUpper())
                 {
                     <button @onclick="() => HandleLetterClick(letter.ToUpper())"
-                            class="col-start-3 landscape:col-start-5 py-2 md:py-9 px-4 mt-4 bg-black text-white text-xl md:text-4xl active:font-bold font-serif">
+                            class="col-start-3 landscape:col-start-5 py-2 md:py-7 px-4 mt-4 bg-black text-white text-xl md:text-4xl active:font-bold font-serif">
                         @letter
                     </button> 
                 }
                 else if ("Я" == letter.ToUpper())
                 {
                     <button @onclick="() => HandleLetterClick(letter.ToUpper())"
-                            class="col-start-5 landscape:col-start-6 py-2 md:py-9 px-4 mt-4 bg-black text-white text-xl md:text-4xl hover:font-bold font-serif">
+                            class="col-start-5 landscape:col-start-6 py-2 md:py-7 px-4 mt-4 bg-black text-white text-xl md:text-4xl hover:font-bold font-serif">
                         @letter
                     </button> 
                 }
                 else
                 {
                     <button @onclick="() => HandleLetterClick(letter.ToUpper())"
-                            class="alphabet py-2 md:py-9 px-4 mt-4 bg-black text-white text-xl md:text-4xl hover:font-bold font-serif">
+                            class="alphabet py-2 md:py-7 px-4 mt-4 bg-black text-white text-xl md:text-4xl hover:font-bold font-serif">
                         @letter
                     </button> 
                 }
             }
         </div>
-        <div class="flex justify-center pt-4 se:hidden">
+        <div class="flex justify-center py-4 md:pt-2 se:hidden">
             <div class="border-2 border-white flex justify-center" >
                 <button @onclick="() => _letters = _letters.Select(a => a.ToUpper()).ToList()" class="text-white md:text-2xl px-2 font-serif">
                     Uppercase

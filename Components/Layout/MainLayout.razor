@@ -5,7 +5,7 @@
         <article>
             @Body
         </article>
-        <div class="absolute inset-x-0 bottom-0 pb-[env(safe-area-inset-bottom)] text-center bg-black text-white">
+        <div class="fixed inset-x-0 bottom-0 pb-[env(safe-area-inset-bottom)] text-center bg-black text-white">
             <nav class="flex flex-row justify-around">
             <NavLink href="flashcard">
                 <div class="nav-item px-3 border-2 @(currentPage == NavPages.Flashcard ? "border-white" : "border-black")" @onclick="() => currentPage = NavPages.Flashcard">
